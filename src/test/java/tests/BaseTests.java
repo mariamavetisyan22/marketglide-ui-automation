@@ -12,7 +12,7 @@ public class BaseTests {
 
     private static WebDriver driver;
 
-    static String url = "https://marketglide.digitecintl.com/";
+    static String demoUrl = "https://marketglide.digitecintl.com/";
 
     public static WebDriver getDriver() {
         return driver;
@@ -42,7 +42,7 @@ public class BaseTests {
     }
 
     protected void goToUrl() {
-        driver.get(url);
+        driver.get(demoUrl);
     }
 
     @AfterMethod
