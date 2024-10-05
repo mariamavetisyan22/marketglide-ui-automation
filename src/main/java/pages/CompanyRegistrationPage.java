@@ -6,21 +6,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.BaseUtils;
 
-public class InvestorRegistrationPage {
+public class CompanyRegistrationPage {
 
     private BaseUtils baseUtils;
     private WebDriver driver;
 
-    @FindBy(className = "Title")
+    @FindBy(xpath = "//h2[normalize-space()='Registration for Companies']")
     private WebElement pageTitle;
 
-    public InvestorRegistrationPage(final WebDriver driver) {
+    public CompanyRegistrationPage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         baseUtils = new BaseUtils(driver);
     }
 
-    public String getInvestorRegistrationPageTitle() {
+    public String getCompanyRegistrationPageTitle() {
         return baseUtils.getText(pageTitle);
     }
 }
