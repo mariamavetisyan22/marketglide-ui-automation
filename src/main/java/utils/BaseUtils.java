@@ -34,6 +34,12 @@ public class BaseUtils {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
     }
 
+    public void sendText(final WebElement element, final String text) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.sendKeys(text);
+    }
+
     public String getPageUrl() {
         return driver.getCurrentUrl();
     }

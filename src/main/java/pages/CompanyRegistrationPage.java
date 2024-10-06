@@ -17,6 +17,9 @@ public class CompanyRegistrationPage {
     @FindBy(xpath = "//div[@class='DesktopHeader_Logo__ZuxHu']//img[@alt='Logo Header']")
     WebElement logoHeader;
 
+    @FindBy(id = "email")
+    private WebElement emailInputField;
+
     public CompanyRegistrationPage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -29,5 +32,10 @@ public class CompanyRegistrationPage {
 
     public void clickToLogoHeader() {
         logoHeader.click();
+    }
+
+    public CompanyRegistrationPage sendTextToEmailInputField(final String email) {
+        baseUtils.sendText(emailInputField, email);
+        return this;
     }
 }
