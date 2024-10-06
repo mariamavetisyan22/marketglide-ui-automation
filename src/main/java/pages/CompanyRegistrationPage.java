@@ -14,6 +14,9 @@ public class CompanyRegistrationPage {
     @FindBy(xpath = "//h2[normalize-space()='Registration for Companies']")
     private WebElement pageTitle;
 
+    @FindBy(xpath = "//div[@class='DesktopHeader_Logo__ZuxHu']//img[@alt='Logo Header']")
+    WebElement logoHeader;
+
     public CompanyRegistrationPage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -22,5 +25,9 @@ public class CompanyRegistrationPage {
 
     public String getCompanyRegistrationPageTitle() {
         return baseUtils.getText(pageTitle);
+    }
+
+    public void clickToLogoHeader() {
+        logoHeader.click();
     }
 }
