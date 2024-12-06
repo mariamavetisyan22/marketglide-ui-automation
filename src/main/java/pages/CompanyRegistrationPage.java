@@ -11,11 +11,11 @@ public class CompanyRegistrationPage {
     private BaseUtils baseUtils;
     private WebDriver driver;
 
-    @FindBy(xpath = "//h2[normalize-space()='Registration for Companies']")
+    @FindBy(xpath = "//h2[normalize-space()='Join as a Company Seeking Funding']")
     private WebElement pageTitle;
 
     @FindBy(xpath = "//div[@class='DesktopHeader_Logo__ZuxHu']//img[@alt='Logo Header']")
-    WebElement logoHeader;
+    private WebElement logoHeader;
 
     @FindBy(id = "email")
     private WebElement emailInputField;

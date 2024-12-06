@@ -13,16 +13,16 @@ public class HomePage {
     private WebDriver driver;
 
     @FindBy(xpath = "//h1[@class='Title']")
-    WebElement pageTitle;
+    private WebElement pageTitle;
 
     @FindBy(xpath = "//a[normalize-space()='Join as Investor']")
-    WebElement joinInvestorButton;
+    private WebElement joinInvestorButton;
 
     @FindBy(xpath = "//a[normalize-space()='Join as Company']")
-    WebElement joinCompanyButton;
+    private WebElement joinCompanyButton;
 
     @FindBy(xpath = "//button[normalize-space()='Sign In']")
-    WebElement signInButton;
+    private WebElement signInButton;
 
     public HomePage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -44,9 +44,8 @@ public class HomePage {
         return new CompanyRegistrationPage(driver);
     }
 
-    public SignInPage OpenSignInPage() throws InterruptedException {
+    public SignInPage OpenSignInPage() {
         signInButton.click();
-        Thread.sleep(5);
         return new SignInPage(driver);
     }
 }
