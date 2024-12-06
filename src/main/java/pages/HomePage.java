@@ -44,7 +44,7 @@ public class HomePage {
         return new CompanyRegistrationPage(driver);
     }
 
-    public SignInPage OpenSignInPage() {
+    public SignInPage ClickToSignInPage() {
         signInButton.click();
         return new SignInPage(driver);
     }

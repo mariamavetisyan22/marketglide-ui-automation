@@ -44,14 +44,14 @@ public class HomePageTests extends BaseTests {
 
     @Test(description = "MRKTGLD-4 / Check navigation to company sign in page")
     public void checkCompanySignIn() {
-        homePage.OpenSignInPage();
+        homePage.ClickToSignInPage();
         signInPage.clickToCompany();
         Assert.assertEquals(signInPage.getCompanyElementSelected(), "Company");
     }
 
     @Test(description = "MRKTGLD-5 / Check navigation to investor sign in page")
     public void checkInvestorSignIn() {
-        homePage.OpenSignInPage();
+        homePage.ClickToSignInPage();
         signInPage.clickToInvestor();
         Assert.assertEquals(signInPage.getInvestorElementSelected(), "Investor");
     }
@@ -76,7 +76,7 @@ public class HomePageTests extends BaseTests {
 
     @Test(description = "MRKTGLD-8 / Check from login page click on logo navigate to homepage")
     public void checkCompanyLoginLogoPage() {
-        homePage.OpenSignInPage();
+        homePage.ClickToSignInPage();
         Assert.assertEquals(signInPage.getPageTitle(), "Welcome back");
         signInPage.clickToLogo();
         Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
