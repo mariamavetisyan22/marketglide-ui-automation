@@ -12,14 +12,14 @@ public class CompanyRegistrationTests extends BaseTests {
     private WebDriver driver;
     private HomePage homePage;
     private CompanyRegistrationPage companyRegistrationPage;
-    private CompanySignInPage companySignInPage;
+    private SignInPage signInPage;
 
     @BeforeMethod()
     public void beforeInit() {
         driver = getDriver();
         homePage = new HomePage(driver);
         companyRegistrationPage = new CompanyRegistrationPage(driver);
-        companySignInPage = new CompanySignInPage(driver);
+        signInPage = new SignInPage(driver);
     }
 
     @Test(description = "Check the successfully registration of company with all filled data")
@@ -28,7 +28,7 @@ public class CompanyRegistrationTests extends BaseTests {
                 "Opportunities in Emerging Markets");
         homePage.clickJoinCompanyButton();
         Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Registration for Companies");
-
+//        companyRegistrationPage.sendTextToEmailInputField("m.avetis22" + )
     }
 
 }

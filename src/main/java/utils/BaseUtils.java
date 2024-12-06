@@ -19,9 +19,9 @@ public class BaseUtils {
     }
 
     public String getText(final WebElement element) {
-        wait.until(ExpectedConditions.visibilityOfAllElements((WebElement) element));
+        wait.until(ExpectedConditions.visibilityOfAllElements(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        return ((WebElement) element).getText();
+        return element.getText();
     }
 
     public void click(final WebElement element) {

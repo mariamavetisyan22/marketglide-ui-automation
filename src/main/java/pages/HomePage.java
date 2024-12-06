@@ -24,12 +24,6 @@ public class HomePage {
     @FindBy(xpath = "//button[normalize-space()='Sign In']")
     WebElement signInButton;
 
-    @FindBy(xpath = "//div[normalize-space()='Option 1']")
-    WebElement CompanySignInButton;
-
-    @FindBy(xpath = "//div[normalize-space()='Option 2']")
-    WebElement InvestorSignInButton;
-
     public HomePage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -50,17 +44,9 @@ public class HomePage {
         return new CompanyRegistrationPage(driver);
     }
 
-    public CompanySignInPage OpenCompanySignInPage() throws InterruptedException {
+    public SignInPage OpenSignInPage() throws InterruptedException {
         signInButton.click();
-        CompanySignInButton.click();
         Thread.sleep(5);
-        return new CompanySignInPage(driver);
-    }
-
-    public InvestorSignInPage OpenInvestorSignInPage() throws InterruptedException {
-        signInButton.click();
-        InvestorSignInButton.click();
-        Thread.sleep(5);
-        return new InvestorSignInPage(driver);
+        return new SignInPage(driver);
     }
 }
