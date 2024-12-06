@@ -10,16 +10,22 @@ public class SignInPage {
     private BaseUtils baseUtils;
     private WebDriver driver;
 
+    @FindBy(xpath = "//h2[normalize-space()='Welcome back']")
+    private WebElement pageTitle;
+
     @FindBy(xpath = "//img[@alt='Logo Header']")
     private WebElement logo;
 
     @FindBy(xpath = "//div[text()='Company']")
     private WebElement companyLabel;
 
-    @FindBy(className = "GridViewBtn_SlideLeft__5fZ0p")
+    @FindBy(xpath = "//div[text()='Investor']")
+    private WebElement investorLabel;
+
+    @FindBy(className = "GridViewBtn_Left__GaSJN")
     private WebElement slideLeft;
 
-    @FindBy(className = "GridViewBtn_SlideRight__PMb7J")
+    @FindBy(className = "GridViewBtn_Right__RuVr6")
     private WebElement slideRight;
 
     public SignInPage(final WebDriver driver) {
@@ -28,16 +34,15 @@ public class SignInPage {
         baseUtils = new BaseUtils(driver);
     }
 
-    public String getSignInPageUrl() {
-        return baseUtils.getPageUrl();
+    public String getPageTitle() {
+        return baseUtils.getText(pageTitle);
     }
 
     public void clickToLogo() {
         logo.click();
     }
 
-    public String getCompanyElementSelected() throws InterruptedException {
-        Thread.sleep(5);
+    public String getCompanyElementSelected() {
         return baseUtils.getText(slideLeft);
     }
 
@@ -48,4 +53,6 @@ public class SignInPage {
     public void clickToCompany() {
         companyLabel.click();
     }
+
+    public void clickToInvestor() { companyLabel.click(); }
 }

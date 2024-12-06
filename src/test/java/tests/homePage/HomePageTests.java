@@ -33,64 +33,51 @@ public class HomePageTests extends BaseTests {
     @Test(description = "MRKTGLD-2 / Check the click to Join as Company")
     public void checkJoinAsCompany() {
         homePage.clickJoinCompanyButton();
-        Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Registration for Companies");
+        Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Join as a Company Seeking Funding");
     }
 
     @Test(description = "MRKTGLD-3 / Check the click to Join as Investor")
     public void checkJoinAsInvestor() {
         homePage.clickJoinInvestorButton();
-        Assert.assertEquals(investorRegistrationPage.getInvestorRegistrationPageTitle(), "Registration for Investors");
+        Assert.assertEquals(investorRegistrationPage.getInvestorRegistrationPageTitle(), "Join as an Investor");
     }
 
-    @Test(description = "Check navigation to company sign in page")
-    public void checkCompanySignIn() throws InterruptedException {
-        final String urlPart = "login";
+    @Test(description = "MRKTGLD-4 / Check navigation to company sign in page")
+    public void checkCompanySignIn() {
         homePage.OpenSignInPage();
-//        Assert.assertTrue(signInPage.getSignInPageUrl().contains(urlPart));
+        signInPage.clickToCompany();
         Assert.assertEquals(signInPage.getCompanyElementSelected(), "Company");
     }
 
-    @Test(description = "Check navigation to investor sign in page")
-    public void checkInvestorSignIn() throws InterruptedException {
-        final String urlPart = "login";
+    @Test(description = "MRKTGLD-5 / Check navigation to investor sign in page")
+    public void checkInvestorSignIn() {
         homePage.OpenSignInPage();
-        signInPage.clickToCompany();
-        Assert.assertTrue(signInPage.getSignInPageUrl().contains(urlPart));
+        signInPage.clickToInvestor();
+        Assert.assertEquals(signInPage.getInvestorElementSelected(), "Investor");
     }
 
-    @Test(description = "Check from the Company registration page click on the logo navigate to the homepage")
+    @Test(description = "MRKTGLD-6 / Check from Company registration page click on logo navigate to homepage")
     public void checkCompanyRegistrationLogoPage() {
         homePage.clickJoinCompanyButton();
-        Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Registration for Companies");
+        Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Join as a Company Seeking Funding");
         companyRegistrationPage.clickToLogoHeader();
         Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
                 "Opportunities in Emerging Markets");
     }
 
-    @Test(description = "Check from the Investor registration page click on the logo navigate to the homepage")
+    @Test(description = "MRKTGLD-7 / Check from Investor registration page click on logo navigate to homepage")
     public void checkInvestorRegistrationLogoPage() {
         homePage.clickJoinInvestorButton();
-        Assert.assertEquals(investorRegistrationPage.getInvestorRegistrationPageTitle(), "Registration for Investors");
+        Assert.assertEquals(investorRegistrationPage.getInvestorRegistrationPageTitle(), "Join as an Investor");
         investorRegistrationPage.clickToLogoHeader();
         Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
                 "Opportunities in Emerging Markets");
     }
 
-    @Test(description = "Check from the Company login page click on the logo navigate to the homepage")
-    public void checkCompanyLoginLogoPage() throws InterruptedException {
-        String urlPart = "company";
+    @Test(description = "MRKTGLD-8 / Check from login page click on logo navigate to homepage")
+    public void checkCompanyLoginLogoPage() {
         homePage.OpenSignInPage();
-        Assert.assertTrue(signInPage.getSignInPageUrl().contains(urlPart));
-        signInPage.clickToLogo();
-        Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
-                "Opportunities in Emerging Markets");
-    }
-
-    @Test(description = "Check from the Investor login page click on the logo navigate to the homepage")
-    public void checkInvestorLoginLogoPage() throws InterruptedException {
-        String urlPart = "investor";
-        homePage.OpenSignInPage();
-        Assert.assertTrue(signInPage.getSignInPageUrl().contains(urlPart));
+        Assert.assertEquals(signInPage.getPageTitle(), "Welcome back");
         signInPage.clickToLogo();
         Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
                 "Opportunities in Emerging Markets");

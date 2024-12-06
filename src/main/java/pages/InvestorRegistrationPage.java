@@ -11,11 +11,11 @@ public class InvestorRegistrationPage {
     private BaseUtils baseUtils;
     private WebDriver driver;
 
-    @FindBy(xpath = "/html/body/main/div/h2")
+    @FindBy(xpath = "//h2[normalize-space()='Join as an Investor']")
     private WebElement pageTitle;
 
     @FindBy(xpath = "//div[@class='DesktopHeader_Logo__ZuxHu']//img[@alt='Logo Header']")
-    WebElement logoHeader;
+    private WebElement logoHeader;
 
     public InvestorRegistrationPage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
