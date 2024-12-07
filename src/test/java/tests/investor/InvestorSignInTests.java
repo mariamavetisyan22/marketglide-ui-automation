@@ -1,22 +1,20 @@
 package tests.investor;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import pages.SignInPage;
+import pages.investor.InvestorSignInPage;
 import steps.SignInSteps;
 import tests.BaseTests;
 
 public class InvestorSignInTests extends BaseTests {
     private WebDriver driver;
-    private SignInPage signInPage;
+    private InvestorSignInPage investorSignInPage;
     private SignInSteps signInSteps;
 
     @BeforeMethod()
     public void beforeInit() {
         driver = getDriver();
-        signInPage = new SignInPage(driver);
+        investorSignInPage = new InvestorSignInPage(driver);
         signInSteps = new SignInSteps(driver);
     }
 }

@@ -5,23 +5,28 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
+import pages.company.CompanyRegistrationPage;
+import pages.company.CompanySignInPage;
+import pages.investor.InvestorRegistrationPage;
+import pages.investor.InvestorSignInPage;
 import tests.BaseTests;
 
 public class HomePageTests extends BaseTests {
 
-    private WebDriver driver;
     private HomePage homePage;
     private InvestorRegistrationPage investorRegistrationPage;
     private CompanyRegistrationPage companyRegistrationPage;
-    private SignInPage signInPage;
+    private CompanySignInPage companySignInPage;
+    private InvestorSignInPage investorSignInPage;
 
-    @BeforeMethod()
+    @BeforeMethod(groups = {"homepage", "company sign in", "investor sign in"})
     public void beforeInit() {
-        driver = getDriver();
+        final WebDriver driver = getDriver();
         homePage = new HomePage(driver);
         investorRegistrationPage = new InvestorRegistrationPage(driver);
         companyRegistrationPage = new CompanyRegistrationPage(driver);
-        signInPage = new SignInPage(driver);
+        companySignInPage = new CompanySignInPage(driver);
+        investorSignInPage = new InvestorSignInPage(driver);
     }
 
     @Test(description = "MRKTGLD-1 / Open Home Page")
@@ -45,15 +50,15 @@ public class HomePageTests extends BaseTests {
     @Test(description = "MRKTGLD-4 / Check navigation to company sign in page")
     public void checkCompanySignIn() {
         homePage.ClickToSignInPage();
-        signInPage.clickToCompany();
-        Assert.assertEquals(signInPage.getCompanyElementSelected(), "Company");
+        companySignInPage.clickToCompany();
+        Assert.assertEquals(companySignInPage.getCompanyElementSelected(), "Company");
     }
 
     @Test(description = "MRKTGLD-5 / Check navigation to investor sign in page")
     public void checkInvestorSignIn() {
         homePage.ClickToSignInPage();
-        signInPage.clickToInvestor();
-        Assert.assertEquals(signInPage.getInvestorElementSelected(), "Investor");
+        companySignInPage.clickToInvestor();
+        Assert.assertEquals(investorSignInPage.getInvestorElementSelected(), "Investor");
     }
 
     @Test(description = "MRKTGLD-6 / Check from Company registration page click on logo navigate to homepage")
@@ -77,8 +82,8 @@ public class HomePageTests extends BaseTests {
     @Test(description = "MRKTGLD-8 / Check from login page click on logo navigate to homepage")
     public void checkCompanyLoginLogoPage() {
         homePage.ClickToSignInPage();
-        Assert.assertEquals(signInPage.getPageTitle(), "Welcome back");
-        signInPage.clickToLogo();
+        Assert.assertEquals(companySignInPage.getPageTitle(), "Welcome back");
+        companySignInPage.clickToLogo();
         Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
                 "Opportunities in Emerging Markets");
     }
