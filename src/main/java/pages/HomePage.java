@@ -1,10 +1,12 @@
 package pages;
 
-import java.lang.Thread;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.company.CompanyRegistrationPage;
+import pages.company.CompanySignInPage;
+import pages.investor.InvestorRegistrationPage;
 import utils.BaseUtils;
 
 public class HomePage {
@@ -44,8 +46,8 @@ public class HomePage {
         return new CompanyRegistrationPage(driver);
     }
 
-    public SignInPage OpenSignInPage() {
+    public CompanySignInPage ClickToSignInPage() {
         signInButton.click();
-        return new SignInPage(driver);
+        return new CompanySignInPage(driver);
     }
 }
