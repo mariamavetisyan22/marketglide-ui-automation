@@ -3,18 +3,17 @@ package tests;
 import configs.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.Getter;
-import lombok.SneakyThrows;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import utils.Utils;
 
-import java.io.IOException;
 import java.time.Duration;
 
 public class BaseTests {
@@ -24,10 +23,12 @@ public class BaseTests {
 
     private static String demoUrl;
 
-    @BeforeTest
+    @BeforeTest(groups = {"homepage", "company sign in", "investor sign in"})
     public void loadConfiguration() {
         Configuration.loadPropertyFile();
         demoUrl = Configuration.getWebUrl();
+
+        setUp();
     }
 
     @BeforeMethod(groups = {"homepage", "company sign in", "investor sign in"})
@@ -46,8 +47,10 @@ public class BaseTests {
                 driver = new SafariDriver();
                 break;
             default:
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(chromeOptions);
                 break;
         }
 

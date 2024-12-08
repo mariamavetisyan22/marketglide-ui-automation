@@ -9,11 +9,10 @@ public class Utils {
     public static void cleanTheAllureResults() {
         final Path folderPath = Paths.get("allure-results");
         try {
-            // Walk the directory and delete files
             Files.walkFileTree(folderPath, new SimpleFileVisitor<>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    Files.delete(file);  // Delete the file
+                    Files.delete(file);
                     return FileVisitResult.CONTINUE;
                 }
 

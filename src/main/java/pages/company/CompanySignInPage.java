@@ -40,6 +40,21 @@ public class CompanySignInPage {
     @FindBy(xpath = "//a[normalize-space()='Sign Up']")
     private WebElement signUpButton;
 
+    @FindBy(xpath = "//p[normalize-space()='Email is a required field']")
+    private WebElement emailInputValidation;
+
+    @FindBy(xpath = "//p[normalize-space()='Password is a required field']")
+    private WebElement passwordInputValidation;
+
+    @FindBy(xpath = "//p[@class='ErrorMessage']")
+    private WebElement InvalidPasswordErrorMessage;
+
+    @FindBy(xpath = "//p[normalize-space()='Email must be in a valid format']")
+    private WebElement invalidEmailInputValidation;
+
+    @FindBy(xpath = "//p[normalize-space()='Email must contain a domain with a valid extension']")
+    private WebElement emailInputWithoutExtValidation;
+
     public CompanySignInPage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
@@ -59,10 +74,8 @@ public class CompanySignInPage {
     }
 
     public void clickToCompany() {
-        companyLabel.click();
+        baseUtils.click(companyLabel);
     }
-
-    public void clickToInvestor() { companyLabel.click(); }
 
     public CompanySignInPage sendEmail(final String email) {
         baseUtils.sendText(emailInput, email);
@@ -74,9 +87,25 @@ public class CompanySignInPage {
         return this;
     }
 
-    public void clickToSignIn() { signInButton.click(); }
+    public void clickToSignIn() { baseUtils.click(signInButton); }
 
-    public void clickToResetPassword() { signUpButton.click(); }
+    public CompanyForgotPasswordPage clickToResetPassword() {
+        baseUtils.click(forgotPasswordButton);
+        return new CompanyForgotPasswordPage(driver);
+    }
 
-    public void clickToSignUp() { signUpButton.click(); }
+    public CompanyRegistrationPage clickToSignUp() {
+        baseUtils.click(signUpButton);
+        return new CompanyRegistrationPage(driver);
+    }
+
+    public String getEmailValidation() { return baseUtils.getText(emailInputValidation); }
+
+    public String getPasswordValidation() { return baseUtils.getText(passwordInputValidation); }
+
+    public String getInvalidPasswordErrorMessage() { return baseUtils.getText(InvalidPasswordErrorMessage); }
+
+    public String getInvalidEmailEntryErrorMessage() { return baseUtils.getText(invalidEmailInputValidation); }
+
+    public String getEmailValidationWithoutExt() { return baseUtils.getText(emailInputWithoutExtValidation); }
 }

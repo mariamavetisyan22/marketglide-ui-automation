@@ -58,7 +58,7 @@ public class InvestorSignInPage {
         return baseUtils.getText(slideRight);
     }
 
-//    public void clickToInvestor() { companyLabel.click(); }
+    public void clickToInvestor() { baseUtils.click(investorLabel); }
 
     public InvestorSignInPage sendEmail(final String email) {
         baseUtils.sendText(emailInput, email);
