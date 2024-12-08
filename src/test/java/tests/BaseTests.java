@@ -23,16 +23,19 @@ public class BaseTests {
 
     private static String demoUrl;
 
-    @BeforeTest(groups = {"homepage", "company sign in", "investor sign in"})
-    public void loadConfiguration() {
-        Configuration.loadPropertyFile();
-        demoUrl = Configuration.getWebUrl();
-
-        setUp();
-    }
+//    @BeforeTest(groups = {"homepage", "company sign in", "investor sign in"})
+//    public void loadConfiguration() {
+//        Configuration.loadPropertyFile();
+//        demoUrl = Configuration.getWebUrl();
+//
+//        setUp();
+//    }
 
     @BeforeMethod(groups = {"homepage", "company sign in", "investor sign in"})
     public void setUp() {
+        Configuration.loadPropertyFile();
+        demoUrl = Configuration.getWebUrl();
+
         switch (Configuration.BROWSER.toLowerCase()) {
             case Configuration.FIREFOX_BROWSER:
                 WebDriverManager.firefoxdriver().setup();
