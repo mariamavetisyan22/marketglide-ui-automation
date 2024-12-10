@@ -31,18 +31,21 @@ public class CompanySignInTests extends BaseTests {
     public void clickOnSignIn() {
         signInSteps.OpensCompanySignInPage();
         companySignInPage.clickToCompany();
+
         Assert.assertEquals(companySignInPage.getCompanyElementSelected(), "Company");
     }
 
     @Test(description = "MRKTGLD-13 / Check Sign In Page Title", groups = {"company sign in"})
     public void checkSignInTitle() {
         signInSteps.OpensCompanySignInPage();
+
         Assert.assertEquals(companySignInPage.getPageTitle(), "Welcome back");
     }
 
     @Test(description = "MRKTGLD-21 / Check page description text under page title", groups = {"company sign in"})
     public void checkPageDescriptionText() {
         signInSteps.OpensCompanySignInPage();
+
         Assert.assertEquals(companySignInPage.getPageDescription(), "Sed urna massa adipiscing egestas accumsan");
     }
 
