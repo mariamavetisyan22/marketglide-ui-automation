@@ -12,7 +12,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 
 import java.time.Duration;
 
@@ -22,14 +21,6 @@ public class BaseTests {
     private static WebDriver driver;
 
     private static String demoUrl;
-
-//    @BeforeTest(groups = {"homepage", "company sign in", "investor sign in"})
-//    public void loadConfiguration() {
-//        Configuration.loadPropertyFile();
-//        demoUrl = Configuration.getWebUrl();
-//
-//        setUp();
-//    }
 
     @BeforeMethod(groups = {"homepage", "company sign in", "investor sign in"})
     public void setUp() {

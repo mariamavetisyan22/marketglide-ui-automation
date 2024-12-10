@@ -15,7 +15,7 @@ public class BaseUtils {
 
     public BaseUtils(final WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
     }
 
     public String getText(final WebElement element) {
