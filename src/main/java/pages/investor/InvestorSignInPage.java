@@ -31,6 +31,15 @@ public class InvestorSignInPage {
     @FindBy(id = "password")
     private WebElement passwordInput;
 
+    @FindBy(xpath = "//p[normalize-space()='Email is a required field']")
+    private WebElement emailInputValidation;
+
+    @FindBy(xpath = "//p[normalize-space()='Password is a required field']")
+    private WebElement passwordInputValidation;
+
+    @FindBy(xpath = "//p[@class='ErrorMessage']")
+    private WebElement InvalidPasswordErrorMessage;
+
     @FindBy(className = "Login_ForgotPassword__z_8Go")
     private WebElement forgotPasswordButton;
 
@@ -69,6 +78,12 @@ public class InvestorSignInPage {
         baseUtils.sendText(passwordInput, password);
         return this;
     }
+
+    public String getEmailValidation() { return baseUtils.getText(emailInputValidation); }
+
+    public String getPasswordValidation() { return baseUtils.getText(passwordInputValidation); }
+
+    public String getInvalidPasswordErrorMessage() { return baseUtils.getText(InvalidPasswordErrorMessage); }
 
     public void clickToSignIn() { signInButton.click(); }
 
