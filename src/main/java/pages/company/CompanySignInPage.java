@@ -4,7 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pages.HomePage;
 import utils.BaseUtils;
+
+import javax.smartcardio.CommandAPDU;
 
 public class CompanySignInPage {
     private BaseUtils baseUtils;
@@ -61,7 +64,10 @@ public class CompanySignInPage {
         baseUtils = new BaseUtils(driver);
     }
 
-    public void clickToLogo() { logo.click(); }
+    public HomePage clickToLogo() {
+        baseUtils.click(logo);
+        return new HomePage(driver);
+    }
 
     public String getPageTitle() {
         return baseUtils.getText(pageTitle);
@@ -79,12 +85,12 @@ public class CompanySignInPage {
 
     public CompanySignInPage sendEmail(final String email) {
         baseUtils.sendText(emailInput, email);
-        return this;
+        return new CompanySignInPage(driver);
     }
 
     public CompanySignInPage sendPassword(final String password) {
         baseUtils.sendText(passwordInput, password);
-        return this;
+        return new CompanySignInPage(driver);
     }
 
     public void clickToSignIn() { baseUtils.click(signInButton); }

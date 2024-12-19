@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.company.CompanyDashboardPage;
 import pages.company.CompanyRegistrationPage;
 import pages.company.CompanySignInPage;
@@ -13,18 +14,20 @@ import tests.BaseTests;
 
 public class CompanySignInTests extends BaseTests {
     private WebDriver driver;
-    private CompanySignInPage companySignInPage;
     private SignInSteps signInSteps;
+    private CompanySignInPage companySignInPage;
     private CompanyDashboardPage companyDashboardPage;
     private CompanyRegistrationPage companyRegistrationPage;
+    private HomePage homePage;
 
     @BeforeMethod()
     public void beforeInit() {
         driver = getDriver();
-        companySignInPage = new CompanySignInPage(driver);
         signInSteps = new SignInSteps(driver);
+        companySignInPage = new CompanySignInPage(driver);
         companyDashboardPage = new CompanyDashboardPage(driver);
         companyRegistrationPage = new CompanyRegistrationPage(driver);
+        homePage = new HomePage(driver);
     }
 
     @Test(description = "MRKTGLD-12 / Check click on Sign In opens Sign In page with Company Switch", groups = {"company sign in"})
@@ -112,5 +115,14 @@ public class CompanySignInTests extends BaseTests {
 
         companySignInPage.clickToSignUp();
         Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Join as a Company Seeking Funding");
+    }
+
+    @Test(description = "MRKTGLD-38 / Check click to logo navigates to home page", groups = {"company sign in"})
+    public void checkCompanyHomePage() {
+        signInSteps.OpensCompanySignInPage();
+        companySignInPage.clickToLogo();
+
+        Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
+                "Opportunities in Emerging Markets");
     }
 }
