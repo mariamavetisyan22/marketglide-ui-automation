@@ -1,7 +1,6 @@
 package tests.investor;
 
 import configs.Configuration;
-import jdk.jfr.TransitionTo;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
