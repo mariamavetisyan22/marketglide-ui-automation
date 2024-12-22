@@ -15,7 +15,7 @@ public class BaseUtils {
 
     public BaseUtils(final WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(25));
     }
 
     public String getText(final WebElement element) {
@@ -30,8 +30,8 @@ public class BaseUtils {
         element.click();
     }
 
-    public void waitForInVisibility(final By element) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
+    public void waitForInVisibility(final WebElement element) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated((By) element));
     }
 
     public void sendText(final WebElement element, final String text) {

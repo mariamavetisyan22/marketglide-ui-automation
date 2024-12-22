@@ -5,9 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
+import pages.company.companyResetPassword.CompanyRecoveryPage;
 import utils.BaseUtils;
-
-import javax.smartcardio.CommandAPDU;
 
 public class CompanySignInPage {
     private BaseUtils baseUtils;
@@ -73,7 +72,10 @@ public class CompanySignInPage {
         return baseUtils.getText(pageTitle);
     }
 
-    public String getPageDescription() { return baseUtils.getText(pageDescriptionText); }
+    public CompanySignInPage getPageDescription() {
+        baseUtils.getText(pageDescriptionText);
+        return new CompanySignInPage(driver);
+    }
 
     public String getCompanyElementSelected() {
         return baseUtils.getText(slideLeft);
@@ -95,9 +97,10 @@ public class CompanySignInPage {
 
     public void clickToSignIn() { baseUtils.click(signInButton); }
 
-    public CompanyForgotPasswordPage clickToResetPassword() {
+    public CompanyRecoveryPage clickToResetPassword() throws InterruptedException {
         baseUtils.click(forgotPasswordButton);
-        return new CompanyForgotPasswordPage(driver);
+        Thread.sleep(5000);
+        return new CompanyRecoveryPage(driver);
     }
 
     public CompanyRegistrationPage clickToSignUp() {
