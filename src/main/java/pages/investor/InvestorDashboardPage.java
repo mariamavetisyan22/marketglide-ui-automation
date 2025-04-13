@@ -16,10 +16,10 @@ public class InvestorDashboardPage {
         baseUtils = new BaseUtils(driver);
     }
 
-    @FindBy(css = "div[class='Dashboard_Dashboard__2I073'] h1")
+    @FindBy(xpath = "//span[text()='Connection Requests']")
     private WebElement investorName;
 
     public String getInvestorName() {
-        return investorName.getText();
+        return baseUtils.getText(investorName);
     }
 }

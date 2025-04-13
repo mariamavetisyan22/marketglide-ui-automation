@@ -23,8 +23,8 @@ public class InvestorSignInPage {
     @FindBy(xpath = "//span[text()='Discover & Engage']")
     private WebElement investorLabel;
 
-    @FindBy(className = "GridViewBtn_Right__RuVr6")
-    private WebElement slideRight;
+    @FindBy(className = "Tooltip")
+    private WebElement investorToolTipText;
 
     @FindBy(id = "email")
     private WebElement emailInput;
@@ -35,16 +35,16 @@ public class InvestorSignInPage {
     @FindBy(xpath = "//p[text()='Email is a required field']")
     private WebElement emailInputValidation;
 
-    @FindBy(xpath = "//p[text()='Password is a required field']")
+    @FindBy(xpath = "//p[text()='Please enter a Password.']")
     private WebElement passwordInputValidation;
 
     @FindBy(xpath = "//p[@class='ErrorMessage']")
     private WebElement InvalidPasswordErrorMessage;
 
-    @FindBy(xpath = "//p[text()='Email must be in a valid format']")
+    @FindBy(xpath = "//p[text()='Please enter a valid email address.']")
     private WebElement invalidEmailError;
 
-    @FindBy(xpath = "//p[text()='Email must contain a domain with a valid extension']")
+    @FindBy(xpath = "//p[text()='Email must contain a domain with a valid extension.']")
     private WebElement emailInputWithoutExtValidation;
 
     @FindBy(className = "Login_ForgotPassword__z_8Go")
@@ -109,5 +109,9 @@ public class InvestorSignInPage {
     public InvestorRegistrationPage clickToSignUp() {
         baseUtils.click(signUpButton);
         return new InvestorRegistrationPage(driver);
+    }
+
+    public String getInvestorToolTipText() {
+        return baseUtils.getHoverItemText(investorToolTipText, "data-tooltip-html");
     }
 }
