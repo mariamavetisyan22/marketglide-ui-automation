@@ -14,13 +14,13 @@ public class InvestorSignInPage {
     @FindBy(xpath = "//img[@alt='Logo Header']")
     private WebElement logo;
 
-    @FindBy(xpath = "//h2[normalize-space()='Welcome back']")
+    @FindBy(xpath = "//h2[text()='Welcome back']")
     private WebElement pageTitle;
 
     @FindBy(className = "FirstAuth_PrimaryText__wyiYM")
     private WebElement pageDescriptionText;
 
-    @FindBy(xpath = "//div[text()='Investor']")
+    @FindBy(xpath = "//span[text()='Discover & Engage']")
     private WebElement investorLabel;
 
     @FindBy(className = "GridViewBtn_Right__RuVr6")
@@ -32,28 +32,28 @@ public class InvestorSignInPage {
     @FindBy(id = "password")
     private WebElement passwordInput;
 
-    @FindBy(xpath = "//p[normalize-space()='Email is a required field']")
+    @FindBy(xpath = "//p[text()='Email is a required field']")
     private WebElement emailInputValidation;
 
-    @FindBy(xpath = "//p[normalize-space()='Password is a required field']")
+    @FindBy(xpath = "//p[text()='Password is a required field']")
     private WebElement passwordInputValidation;
 
     @FindBy(xpath = "//p[@class='ErrorMessage']")
     private WebElement InvalidPasswordErrorMessage;
 
-    @FindBy(xpath = "//p[normalize-space()='Email must be in a valid format']")
+    @FindBy(xpath = "//p[text()='Email must be in a valid format']")
     private WebElement invalidEmailError;
 
-    @FindBy(xpath = "//p[normalize-space()='Email must contain a domain with a valid extension']")
+    @FindBy(xpath = "//p[text()='Email must contain a domain with a valid extension']")
     private WebElement emailInputWithoutExtValidation;
 
     @FindBy(className = "Login_ForgotPassword__z_8Go")
     private WebElement resetPasswordButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Sign In']")
+    @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement signInButton;
 
-    @FindBy(xpath = "//a[normalize-space()='Sign Up']")
+    @FindBy(xpath = "//a[text()='Sign Up']")
     private WebElement signUpButton;
 
     public InvestorSignInPage(final WebDriver driver) {
@@ -74,7 +74,7 @@ public class InvestorSignInPage {
     public String getPageDescription() { return baseUtils.getText(pageDescriptionText); }
 
     public String getInvestorElementSelected() {
-        return baseUtils.getText(slideRight);
+        return baseUtils.getText(investorLabel);
     }
 
     public void clickToInvestor() { baseUtils.click(investorLabel); }

@@ -11,11 +11,14 @@ public class CompanyRegistrationPage {
     private BaseUtils baseUtils;
     private WebDriver driver;
 
-    @FindBy(xpath = "//h2[normalize-space()='Join as a Company Seeking Funding']")
+    @FindBy(className = "Title")
     private WebElement pageTitle;
 
     @FindBy(xpath = "//div[@class='DesktopHeader_Logo__ZuxHu']//img[@alt='Logo Header']")
     private WebElement logoHeader;
+
+    @FindBy(className = "Description")
+    private WebElement pageDescription;
 
     @FindBy(id = "email")
     private WebElement emailInputField;
@@ -32,6 +35,10 @@ public class CompanyRegistrationPage {
 
     public void clickToLogoHeader() {
         logoHeader.click();
+    }
+
+    public String getPageDescription() {
+        return baseUtils.getText(pageDescription);
     }
 
     public CompanyRegistrationPage sendTextToEmailInputField(final String email) {

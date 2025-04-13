@@ -43,4 +43,10 @@ public class BaseUtils {
     public String getPageUrl() {
         return driver.getCurrentUrl();
     }
+
+    public String getHoverItemText(final WebElement element, final String attribute) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return element.getDomAttribute(attribute);
+    }
 }

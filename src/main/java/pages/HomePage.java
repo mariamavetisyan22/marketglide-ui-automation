@@ -17,10 +17,16 @@ public class HomePage {
     @FindBy(xpath = "//h1[@class='Title']")
     private WebElement pageTitle;
 
-    @FindBy(xpath = "//a[normalize-space()='Join as Investor']")
+    @FindBy(xpath = "//a[normalize-space()='Discover & Engage']")
     private WebElement joinInvestorButton;
 
-    @FindBy(xpath = "//a[normalize-space()='Join as Company']")
+    @FindBy(className = "Tooltip")
+    private WebElement investorToolTipText;
+
+    @FindBy(xpath = "//div[contains(@data-tooltip-id,'companyReg')]")
+    private WebElement companyTooltipText;
+
+    @FindBy(xpath = "//a[normalize-space()='Raise & Scale']")
     private WebElement joinCompanyButton;
 
     @FindBy(xpath = "//button[normalize-space()='Sign In']")
@@ -37,17 +43,25 @@ public class HomePage {
     }
 
     public InvestorRegistrationPage clickJoinInvestorButton() {
-        joinInvestorButton.click();
+        baseUtils.click(joinInvestorButton);
         return new InvestorRegistrationPage(driver);
     }
 
     public CompanyRegistrationPage clickJoinCompanyButton() {
-        joinCompanyButton.click();
+        baseUtils.click(joinCompanyButton);
         return new CompanyRegistrationPage(driver);
     }
 
-    public CompanySignInPage ClickToSignInPage() {
-        signInButton.click();
+    public CompanySignInPage clickToSignInPage() {
+        baseUtils.click(signInButton);
         return new CompanySignInPage(driver);
+    }
+
+    public String getInvestorToolTipText() {
+       return baseUtils.getHoverItemText(investorToolTipText, "data-tooltip-html");
+    }
+
+    public String getCompanyTooltipText() {
+        return baseUtils.getHoverItemText(companyTooltipText, "data-tooltip-html");
     }
 }

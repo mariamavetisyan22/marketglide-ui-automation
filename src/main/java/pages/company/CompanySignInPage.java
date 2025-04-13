@@ -21,11 +21,8 @@ public class CompanySignInPage {
     @FindBy(className = "FirstAuth_PrimaryText__wyiYM")
     private WebElement pageDescriptionText;
 
-    @FindBy(xpath = "//div[text()='Company']")
+    @FindBy(xpath = "//span[normalize-space()='Raise & Scale']")
     private WebElement companyLabel;
-
-    @FindBy(className = "GridViewBtn_Left__GaSJN")
-    private WebElement slideLeft;
 
     @FindBy(id = "email")
     private WebElement emailInput;
@@ -78,7 +75,7 @@ public class CompanySignInPage {
     }
 
     public String getCompanyElementSelected() {
-        return baseUtils.getText(slideLeft);
+        return baseUtils.getText(companyLabel);
     }
 
     public void clickToCompany() {

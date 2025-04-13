@@ -16,11 +16,11 @@ public class SignInSteps {
     }
 
     public void OpensCompanySignInPage() {
-        homePage.ClickToSignInPage();
+        homePage.clickToSignInPage();
     }
 
     public void OpensInvestorSignInPage() {
-        homePage.ClickToSignInPage();
+        homePage.clickToSignInPage();
         investorSignInPage.clickToInvestor();
     }
 }
