@@ -23,6 +23,9 @@ public class InvestorSignInPage {
     @FindBy(xpath = "//span[text()='Discover & Engage']")
     private WebElement investorLabel;
 
+    @FindBy(xpath = "//span[text()='Raise & Scale']")
+    private WebElement companyLabel;
+
     @FindBy(className = "Tooltip")
     private WebElement investorToolTipText;
 
@@ -78,6 +81,8 @@ public class InvestorSignInPage {
     }
 
     public void clickToInvestor() { baseUtils.click(investorLabel); }
+
+    public void clickToCompany() { baseUtils.click(companyLabel); }
 
     public InvestorSignInPage sendEmail(final String email) {
         baseUtils.sendText(emailInput, email);

@@ -15,13 +15,13 @@ public class CompanySignInPage {
     @FindBy(xpath = "//img[@alt='Logo Header']")
     private WebElement logo;
 
-    @FindBy(xpath = "//h2[normalize-space()='Welcome back']")
+    @FindBy(xpath = "//h2[text()='Welcome back']")
     private WebElement pageTitle;
 
     @FindBy(className = "FirstAuth_PrimaryText__wyiYM")
     private WebElement pageDescriptionText;
 
-    @FindBy(xpath = "//span[normalize-space()='Raise & Scale']")
+    @FindBy(xpath = "//span[text()='Raise & Scale']")
     private WebElement companyLabel;
 
     @FindBy(id = "email")
@@ -33,26 +33,29 @@ public class CompanySignInPage {
     @FindBy(className = "Login_ForgotPassword__z_8Go")
     private WebElement forgotPasswordButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Sign In']")
+    @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement signInButton;
 
-    @FindBy(xpath = "//a[normalize-space()='Sign Up']")
+    @FindBy(xpath = "//a[text()='Sign Up']")
     private WebElement signUpButton;
 
-    @FindBy(xpath = "//p[normalize-space()='Email is a required field']")
+    @FindBy(xpath = "//p[text()='Email is a required field']")
     private WebElement emailInputValidation;
 
-    @FindBy(xpath = "//p[normalize-space()='Password is a required field']")
+    @FindBy(xpath = "//p[text()='Please enter a Password.']")
     private WebElement passwordInputValidation;
 
     @FindBy(xpath = "//p[@class='ErrorMessage']")
     private WebElement InvalidPasswordErrorMessage;
 
-    @FindBy(xpath = "//p[normalize-space()='Email must be in a valid format']")
+    @FindBy(xpath = "//p[text()='Please enter a valid email address.']")
     private WebElement invalidEmailInputValidation;
 
-    @FindBy(xpath = "//p[normalize-space()='Email must contain a domain with a valid extension']")
+    @FindBy(xpath = "//p[text()='Email must contain a domain with a valid extension.']")
     private WebElement emailInputWithoutExtValidation;
+
+    @FindBy(xpath = "//div[contains(@data-tooltip-id,'companyReg')]")
+    private WebElement companyTooltipText;
 
     public CompanySignInPage(final WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -69,10 +72,7 @@ public class CompanySignInPage {
         return baseUtils.getText(pageTitle);
     }
 
-    public CompanySignInPage getPageDescription() {
-        baseUtils.getText(pageDescriptionText);
-        return new CompanySignInPage(driver);
-    }
+    public String getPageDescription() { return baseUtils.getText(pageDescriptionText); }
 
     public String getCompanyElementSelected() {
         return baseUtils.getText(companyLabel);
@@ -94,9 +94,8 @@ public class CompanySignInPage {
 
     public void clickToSignIn() { baseUtils.click(signInButton); }
 
-    public CompanyRecoveryPage clickToResetPassword() throws InterruptedException {
+    public CompanyRecoveryPage clickToResetPassword() {
         baseUtils.click(forgotPasswordButton);
-        Thread.sleep(5000);
         return new CompanyRecoveryPage(driver);
     }
 
@@ -114,4 +113,8 @@ public class CompanySignInPage {
     public String getInvalidEmailEntryErrorMessage() { return baseUtils.getText(invalidEmailInputValidation); }
 
     public String getEmailValidationWithoutExt() { return baseUtils.getText(emailInputWithoutExtValidation); }
+
+    public String getCompanyToolTipText() {
+        return baseUtils.getHoverItemText(companyTooltipText, "data-tooltip-html");
+    }
 }

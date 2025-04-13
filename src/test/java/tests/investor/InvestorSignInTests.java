@@ -30,6 +30,13 @@ public class InvestorSignInTests extends BaseTests {
         homePage = new HomePage(driver);
     }
 
+    @Test(description = "MRKTGLD-24 / Check Click on Sign In opens Sign In page with Investor Switch", groups = {"investor sign in"})
+    public void checkInvestorSignInSwitch() {
+        signInSteps.opensInvestorSignInPage();
+
+        Assert.assertEquals(investorSignInPage.getInvestorElementSelected(), "Discover & Engage");
+    }
+
     @Test(description = "MRKTGLD-39 / Check click to logo navigates to home page", groups = {"investor sign in"})
     public void checkInvestorHomePage() {
         signInSteps.opensInvestorSignInPage();
@@ -52,13 +59,6 @@ public class InvestorSignInTests extends BaseTests {
         Assert.assertEquals(investorSignInPage.getPageDescription(), "Log in to access your personalized dashboard and stay connected.");
     }
 
-    @Test(description = "MRKTGLD-24 / Check Click on Sign In opens Sign In page with Investor Switch", groups = {"investor sign in"})
-    public void checkInvestorSignInSwitch() {
-        signInSteps.opensInvestorSignInPage();
-
-        Assert.assertEquals(investorSignInPage.getInvestorElementSelected(), "Discover & Engage");
-    }
-
     @Test(description = "MRKTGLD-88 / Check the Investor Label tooltip", groups = {"homepage"})
     public void checkInvestorSignInTooltip() {
         signInSteps.opensInvestorSignInPage();
@@ -76,7 +76,7 @@ public class InvestorSignInTests extends BaseTests {
         investorSignInPage.sendEmail(Configuration.INVESTOR_EMAIL)
                 .sendPassword(Configuration.PASSWORD)
                 .clickToSignIn();
-        Assert.assertTrue(investorDashboardPage.getInvestorName().contains("Connection Requests"));
+        Assert.assertTrue(investorDashboardPage.getRequestsText().contains("Connection Requests"));
     }
 
     @Test(description = "MRKTGLD-27 / Check validation messages on empty Sign In", groups = {"investor sign in"})

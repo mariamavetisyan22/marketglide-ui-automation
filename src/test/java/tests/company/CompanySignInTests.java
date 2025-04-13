@@ -32,97 +32,105 @@ public class CompanySignInTests extends BaseTests {
 
     @Test(description = "MRKTGLD-12 / Check click on Sign In opens Sign In page with Company Switch", groups = {"company sign in"})
     public void clickOnSignIn() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
         companySignInPage.clickToCompany();
 
-        Assert.assertEquals(companySignInPage.getCompanyElementSelected(), "Company");
+        Assert.assertEquals(companySignInPage.getCompanyElementSelected(), "Raise & Scale");
+    }
+
+    @Test(description = "MRKTGLD-38 / Check click to logo navigates to home page", groups = {"company sign in"})
+    public void checkCompanyHomePage() {
+        signInSteps.opensCompanySignInPage();
+        companySignInPage.clickToLogo();
+
+        Assert.assertEquals(homePage.getPageTitle(), "The Premier Global Investor Network");
     }
 
     @Test(description = "MRKTGLD-13 / Check Sign In Page Title", groups = {"company sign in"})
     public void checkSignInTitle() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         Assert.assertEquals(companySignInPage.getPageTitle(), "Welcome back");
     }
 
     @Test(description = "MRKTGLD-21 / Check page description text under page title", groups = {"company sign in"})
     public void checkPageDescriptionText() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
-        Assert.assertEquals(companySignInPage.getPageDescription(), "Sed urna massa adipiscing egestas accumsan");
+        Assert.assertEquals(companySignInPage.getPageDescription(), "Log in to access your personalized dashboard and stay connected.");
+    }
+
+    @Test(description = "MRKTGLD-89 / Check the Company Label tooltip", groups = {"homepage"})
+    public void checkInvestorSignInTooltip() {
+        signInSteps.opensInvestorSignInPage();
+
+        Assert.assertEquals(companySignInPage.getCompanyToolTipText(), "For companies, fund managers, and deal " +
+                "originators seeking capital or strategic buyers.<br/>Select this account only if you " +
+                "are on the sell-side looking to raise capital for your company or fund.");
     }
 
     @Test(description = "MRKTGLD-14 / Check Company Sign In with valid credentials", groups = {"company sign in"})
     public void checkCompanySignIn() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.sendEmail(Configuration.COMPANY_EMAIL)
                 .sendPassword(Configuration.PASSWORD)
                 .clickToSignIn();
-        Assert.assertTrue(companyDashboardPage.getCompanyName().contains("Welcome to Dashboard"));
+        Assert.assertTrue(companyDashboardPage.getRequestsText().contains("Connection Requests"));
     }
 
     @Test(description = "MRKTGLD-15 / Check validation messages on empty Sign In", groups = {"company sign in"})
     public void checkValidationMessages() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.clickToSignIn();
         Assert.assertEquals(companySignInPage.getEmailValidation(), "Email is a required field");
-        Assert.assertEquals(companySignInPage.getPasswordValidation(), "Password is a required field");
+        Assert.assertEquals(companySignInPage.getPasswordValidation(), "Please enter a Password.");
     }
 
     @Test(description = "MRKTGLD-16 / Check validation message on valid email and invalid password entry", groups = {"company sign in"})
     public void checkInvalidPasswordValidation() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.sendEmail(Configuration.COMPANY_EMAIL)
                 .sendPassword("Qwerty2@")
                 .clickToSignIn();
-        Assert.assertEquals(companySignInPage.getInvalidPasswordErrorMessage(), "Company with provided data was not found.");
+        Assert.assertEquals(companySignInPage.getInvalidPasswordErrorMessage(), "No company found with the provided details.");
     }
 
     @Test(description = "MRKTGLD-23 / Check Sign In of non-existing company credentials", groups = {"company sign in"})
     public void checkNonExistingCompanySignIn() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.sendEmail("company_test@harakirimail.com")
                 .sendPassword("Qwerty2@")
                 .clickToSignIn();
-        Assert.assertEquals(companySignInPage.getInvalidPasswordErrorMessage(), "Company with provided data was not found.");
+        Assert.assertEquals(companySignInPage.getInvalidPasswordErrorMessage(), "No company found with the provided details.");
     }
 
     @Test(description = "MRKTGLD-17 / Check invalid email validation", groups = {"company sign in"})
     public void checkInvalidEmailValidation() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.sendEmail("companytestharakirimailcom")
                 .clickToSignIn();
-        Assert.assertEquals(companySignInPage.getInvalidEmailEntryErrorMessage(), "Email must be in a valid format");
+        Assert.assertEquals(companySignInPage.getInvalidEmailEntryErrorMessage(), "Please enter a valid email address.");
     }
 
     @Test(description = "MRKTGLD-18 / Check validation of email without extension", groups = {"company sign in"})
     public void checkWithoutExtEmailValidation() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.sendEmail("company@harakirimail")
                 .clickToSignIn();
-        Assert.assertEquals(companySignInPage.getEmailValidationWithoutExt(), "Email must contain a domain with a valid extension");
+        Assert.assertEquals(companySignInPage.getEmailValidationWithoutExt(), "Email must contain a domain with a valid extension.");
     }
 
     @Test(description = "MRKTGLD-22 / Check click on Sign Up navigates to Company Registration page")
     public void checkSignUpFromCompanySignIn() {
-        signInSteps.OpensCompanySignInPage();
+        signInSteps.opensCompanySignInPage();
 
         companySignInPage.clickToSignUp();
-        Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Join as a Company Seeking Funding");
-    }
-
-    @Test(description = "MRKTGLD-38 / Check click to logo navigates to home page", groups = {"company sign in"})
-    public void checkCompanyHomePage() {
-        signInSteps.OpensCompanySignInPage();
-        companySignInPage.clickToLogo();
-
-        Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
-                "Opportunities in Emerging Markets");
+        Assert.assertEquals(companyRegistrationPage.getCompanyRegistrationPageTitle(), "Join to Raise");
     }
 }

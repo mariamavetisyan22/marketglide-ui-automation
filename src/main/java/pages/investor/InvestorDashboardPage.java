@@ -17,9 +17,9 @@ public class InvestorDashboardPage {
     }
 
     @FindBy(xpath = "//span[text()='Connection Requests']")
-    private WebElement investorName;
+    private WebElement connectionRequestsText;
 
-    public String getInvestorName() {
-        return baseUtils.getText(investorName);
+    public String getRequestsText() {
+        return baseUtils.getText(connectionRequestsText);
     }
 }

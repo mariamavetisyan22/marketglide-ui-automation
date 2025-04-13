@@ -16,10 +16,10 @@ public class CompanyDashboardPage {
         baseUtils = new BaseUtils(driver);
     }
 
-    @FindBy(css = "div[class='Dashboard_Dashboard__R9qty'] h1")
-    private WebElement companyName;
+    @FindBy(xpath = "//span[text()='Connection Requests']")
+    private WebElement connectionRequestsText;
 
-    public String getCompanyName() {
-        return companyName.getText();
+    public String getRequestsText() {
+        return baseUtils.getText(connectionRequestsText);
     }
 }
