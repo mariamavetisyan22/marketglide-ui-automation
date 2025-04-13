@@ -22,7 +22,7 @@ public class BaseTests {
 
     private static String demoUrl;
 
-    @BeforeMethod(groups = {"homepage", "company sign in", "investor sign in"})
+    @BeforeMethod(groups = {"homepage", "company sign in", "investor sign in", "company reset password"})
     public void setUp() {
         Configuration.loadPropertyFile();
         demoUrl = Configuration.getWebUrl();
