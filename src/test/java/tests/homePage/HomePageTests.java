@@ -31,8 +31,7 @@ public class HomePageTests extends BaseTests {
 
     @Test(description = "MRKTGLD-1 / Open Home Page", groups = {"homepage"})
     public void openHomePage() {
-        Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
-                "Opportunities in Emerging Markets");
+        Assert.assertEquals(homePage.getPageTitle(), "The Premier Global Investor Network");
     }
 
     @Test(description = "MRKTGLD-2 / Check the click to Join as Company", groups = {"homepage"})
