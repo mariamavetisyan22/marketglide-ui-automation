@@ -29,7 +29,7 @@ public class HomePage {
     @FindBy(xpath = "//a[normalize-space()='Raise & Scale']")
     private WebElement joinCompanyButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Sign In']")
+    @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement signInButton;
 
     public HomePage(final WebDriver driver) {

@@ -30,102 +30,109 @@ public class InvestorSignInTests extends BaseTests {
         homePage = new HomePage(driver);
     }
 
-    @Test(description = "MRKTGLD-24 / Check Click on Sign In opens Sign In page with Investor Switch", groups = {"investor sign in"})
-    public void checkInvestorSignInSwitch() {
-        signInSteps.OpensInvestorSignInPage();
+    @Test(description = "MRKTGLD-39 / Check click to logo navigates to home page", groups = {"investor sign in"})
+    public void checkInvestorHomePage() {
+        signInSteps.opensInvestorSignInPage();
+        investorSignInPage.clickToLogo();
 
-        Assert.assertEquals(investorSignInPage.getInvestorElementSelected(), "Investor");
+        Assert.assertEquals(homePage.getPageTitle(), "The Premier Global Investor Network");
     }
 
     @Test(description = "MRKTGLD-25 / Check Sign In Page Title", groups = {"investor sign in"})
     public void checkInvestorSignInPageTitle() {
-        signInSteps.OpensInvestorSignInPage();
+        signInSteps.opensInvestorSignInPage();
 
         Assert.assertEquals(investorSignInPage.getPageTitle(), "Welcome back");
     }
 
+    @Test(description = "MRKTGLD-33 / Check page description text under page title", groups = {"investor sign in"})
+    public void checkInvestorPageDescription() {
+        signInSteps.opensInvestorSignInPage();
+
+        Assert.assertEquals(investorSignInPage.getPageDescription(), "Log in to access your personalized dashboard and stay connected.");
+    }
+
+    @Test(description = "MRKTGLD-24 / Check Click on Sign In opens Sign In page with Investor Switch", groups = {"investor sign in"})
+    public void checkInvestorSignInSwitch() {
+        signInSteps.opensInvestorSignInPage();
+
+        Assert.assertEquals(investorSignInPage.getInvestorElementSelected(), "Discover & Engage");
+    }
+
+    @Test(description = "MRKTGLD-88 / Check the Investor Label tooltip", groups = {"homepage"})
+    public void checkInvestorSignInTooltip() {
+        signInSteps.opensInvestorSignInPage();
+
+        Assert.assertEquals(investorSignInPage.getInvestorToolTipText(), "For professional investors, advisors, " +
+                "and market participants exploring vetted private market opportunities.<br/>Select this account " +
+                "if you are on the buy-side or simply want to be part of our global community" +
+                " (not currently fundraising).");
+    }
+
     @Test(description = "MRKTGLD-26 / Check Investor Sign In with valid credentials", groups = {"investor sign in"})
     public void checkInvestorValidSignIn() {
-        signInSteps.OpensInvestorSignInPage();
+        signInSteps.opensInvestorSignInPage();
 
         investorSignInPage.sendEmail(Configuration.INVESTOR_EMAIL)
                 .sendPassword(Configuration.PASSWORD)
                 .clickToSignIn();
-        Assert.assertTrue(investorDashboardPage.getInvestorName().contains("Welcome to Dashboard"));
+        Assert.assertTrue(investorDashboardPage.getInvestorName().contains("Connection Requests"));
     }
 
     @Test(description = "MRKTGLD-27 / Check validation messages on empty Sign In", groups = {"investor sign in"})
     public void checkInvestorEmptySignIn() {
-        signInSteps.OpensInvestorSignInPage();
-
+        signInSteps.opensInvestorSignInPage();
         investorSignInPage.clickToSignIn();
         Assert.assertEquals(investorSignInPage.getEmailValidation(), "Email is a required field");
-        Assert.assertEquals(investorSignInPage.getPasswordValidation(), "Password is a required field");
+        Assert.assertEquals(investorSignInPage.getPasswordValidation(), "Please enter a Password.");
     }
 
-    @Test(description = "MRKTGLD-28 / Check validation message  valid email and invalid password", groups = {"investor sign in"})
+    @Test(description = "MRKTGLD-28 / Check validation message valid email and invalid password", groups = {"investor sign in"})
     public void checkInvestorInvalidPassword() {
-        signInSteps.OpensInvestorSignInPage();
+        signInSteps.opensInvestorSignInPage();
 
         investorSignInPage.sendEmail(Configuration.INVESTOR_EMAIL)
                 .sendPassword("Qwerty2@")
                 .clickToSignIn();
-
-        Assert.assertEquals(investorSignInPage.getInvalidPasswordErrorMessage(), "Investor with provided data was not found.");
+        Assert.assertEquals(investorSignInPage.getInvalidPasswordErrorMessage(), "No investor found with the provided details.");
     }
 
     @Test(description = "MRKTGLD-29 / Check invalid email validation", groups = {"investor sign in"})
     public void checkInvestorInvalidEmail() {
-        signInSteps.OpensInvestorSignInPage();
+        signInSteps.opensInvestorSignInPage();
 
         investorSignInPage.sendEmail("investortestemail").
                 clickToSignIn();
 
-        Assert.assertEquals(investorSignInPage.getInvalidEmailError(), "Email must be in a valid format");
+        Assert.assertEquals(investorSignInPage.getInvalidEmailError(), "Please enter a valid email address.");
     }
 
     @Test(description = "MRKTGLD-30 / Check validation of email without extension", groups = {"investor sign in"})
     public void checkInvestorInvalidExtension() {
-        signInSteps.OpensInvestorSignInPage();
+        signInSteps.opensInvestorSignInPage();
 
         investorSignInPage.sendEmail("investor@harkirimail")
                 .clickToSignIn();
 
-        Assert.assertEquals(investorSignInPage.getEmailInputWithoutExtValidation(), "Email must contain a domain with a valid extension");
-    }
-
-    @Test(description = "MRKTGLD-33 / Check page description text under page title", groups = {"investor sign in"})
-    public void checkInvestorPageDescription() {
-        signInSteps.OpensInvestorSignInPage();
-
-        Assert.assertEquals(investorSignInPage.getPageDescription(), "Sed urna massa adipiscing egestas accumsan");
-    }
-
-    @Test(description = "MRKTGLD-34 / Check click on Sign Up navigates to Investor Registration page", groups = {"investor sign in"})
-    public void checkInvestorSignUp() {
-        signInSteps.OpensInvestorSignInPage();
-
-        investorSignInPage.clickToSignUp();
-        Assert.assertEquals(investorRegistrationPage.getInvestorRegistrationPageTitle(), "Join as an Investor");
+        Assert.assertEquals(investorSignInPage.getEmailInputWithoutExtValidation(), "Email must contain a domain with a valid extension.");
     }
 
     @Test(description = "MRKTGLD-35 / Check Sign In of non-existing investor credentials", groups = {"investor sign in"})
     public void checkInvestorSignInNonExistingInvestor() {
-        signInSteps.OpensInvestorSignInPage();
+        signInSteps.opensInvestorSignInPage();
 
         investorSignInPage.sendEmail("investorUser@harkirimail.com")
                 .sendPassword("Qwerty2!")
                 .clickToSignIn();
 
-        Assert.assertEquals(investorSignInPage.getInvalidPasswordErrorMessage(), "Investor with provided data was not found.");
+        Assert.assertEquals(investorSignInPage.getInvalidPasswordErrorMessage(), "No investor found with the provided details.");
     }
 
-    @Test(description = "MRKTGLD-39 / Check click to logo navigates to home page", groups = {"investor sign in"})
-    public void checkInvestorHomePage() {
-        signInSteps.OpensInvestorSignInPage();
-        investorSignInPage.clickToLogo();
+    @Test(description = "MRKTGLD-34 / Check click on Sign Up navigates to Investor Registration page", groups = {"investor sign in"})
+    public void checkInvestorSignUp() {
+        signInSteps.opensInvestorSignInPage();
 
-        Assert.assertEquals(homePage.getPageTitle(), "Connecting Investors with\n" +
-                "Opportunities in Emerging Markets");
+        investorSignInPage.clickToSignUp();
+        Assert.assertEquals(investorRegistrationPage.getInvestorRegistrationPageTitle(), "Join Our Global Community");
     }
 }

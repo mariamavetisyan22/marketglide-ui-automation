@@ -1,6 +1,5 @@
 package configs;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.Getter;
 import lombok.SneakyThrows;
 

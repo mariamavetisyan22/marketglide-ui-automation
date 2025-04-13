@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.*;
+import pages.HomePage;
 import pages.company.CompanyRegistrationPage;
 import pages.company.CompanySignInPage;
 import pages.investor.InvestorRegistrationPage;

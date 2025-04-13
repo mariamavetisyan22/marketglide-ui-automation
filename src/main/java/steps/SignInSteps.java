@@ -19,7 +19,7 @@ public class SignInSteps {
         homePage.clickToSignInPage();
     }
 
-    public void OpensInvestorSignInPage() {
+    public void opensInvestorSignInPage() {
         homePage.clickToSignInPage();
         investorSignInPage.clickToInvestor();
     }
