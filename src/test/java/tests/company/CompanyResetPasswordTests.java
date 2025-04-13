@@ -16,7 +16,6 @@ import tests.BaseTests;
 
 public class CompanyResetPasswordTests extends BaseTests {
     private WebDriver driver;
-    private SignInSteps signInSteps;
     private ResetPasswordSteps resetPasswordSteps;
     private CompanySignInPage companySignInPage;
     private CompanyRecoveryPage companyRecoveryPage;
@@ -27,7 +26,6 @@ public class CompanyResetPasswordTests extends BaseTests {
     @BeforeMethod()
     public void beforeInit() {
         driver = getDriver();
-        signInSteps = new SignInSteps(driver);
         resetPasswordSteps = new ResetPasswordSteps(driver);
         companySignInPage = new CompanySignInPage(driver);
         companyRecoveryPage = new CompanyRecoveryPage(driver);
@@ -37,26 +35,26 @@ public class CompanyResetPasswordTests extends BaseTests {
     }
 
     @Test(description = "MRKTGLD-40 / MRKTGLD-41 - Check click to [Reset Password] opens the Company Recovery Password page", groups = {"company reset password"})
-    public void clickResetPasswordRecoveryPage() throws InterruptedException {
+    public void clickResetPasswordRecoveryPage() {
         resetPasswordSteps.openCompanyResetPasswordPage();
         Assert.assertEquals(companyRecoveryPage.getPageTitle(), "Recovery Password");
     }
 
     @Test(description = "MRKTGLD-42 / Check Company Reset Password page description text", groups = {"company reset password"})
-    public void checkCompanyResetPasswordPageDescription() throws InterruptedException {
+    public void checkCompanyResetPasswordPageDescription() {
         resetPasswordSteps.openCompanyResetPasswordPage();
         Assert.assertEquals(companyRecoveryPage.getPageDescription(), "Enter the email address associated with your MarketGlide account.");
     }
 
     @Test(description = "MRKTGLD-43 / Reset Password page click to [Cancel] navigates to Sign in page of Company", groups = {"company reset password"})
-    public void clickCancelResetPasswordPage() throws InterruptedException {
+    public void clickCancelResetPasswordPage() {
         resetPasswordSteps.openCompanyResetPasswordPage();
         companyRecoveryPage.clickToCancelButton();
         Assert.assertEquals(companySignInPage.getPageTitle(), "Welcome back");
     }
 
     @Test(description = "MRKTGLD-44 / Reset Password Page click to [Sign Up] navigates to Company Registration page", groups = {"company reset password"})
-    public void clickSignUpPage() throws InterruptedException {
+    public void clickSignUpPage() {
         resetPasswordSteps.openCompanyResetPasswordPage();
 
         companyRecoveryPage.clickToSignUpButton();
@@ -64,14 +62,14 @@ public class CompanyResetPasswordTests extends BaseTests {
     }
 
     @Test(description = "MRKTGLD-45 / Check Company Reset Password page click to [Next] without any entry", groups = {"company reset password"})
-    public void checkCompanyClickNextWithoutEntry() throws InterruptedException {
+    public void checkCompanyClickNextWithoutEntry() {
         resetPasswordSteps.openCompanyResetPasswordPage();
         companyRecoveryPage.clickToNextButton();
         Assert.assertEquals(companyRecoveryPage.getEmptyInputMessage(), "Email is a required field");
     }
 
     @Test(description = "MRKTGLD-46 / Check Company Reset Password page with valid email", groups = {"company reset password"})
-    public void checkCompanyClickValidEmail() throws InterruptedException {
+    public void checkCompanyClickValidEmail() {
         resetPasswordSteps.openCompanyResetPasswordPage();
         companyRecoveryPage.sendEmail(Configuration.COMPANY_EMAIL);
         companyRecoveryPage.clickToNextButton();
@@ -80,7 +78,7 @@ public class CompanyResetPasswordTests extends BaseTests {
     }
 
     @Test(description = "MRKTGLD-47 / Check Company Reset Password page enter not registered email", groups = {"company reset password"})
-    public void checkNotRegisteredEmailResetPassword() throws InterruptedException {
+    public void checkNotRegisteredEmailResetPassword() {
         resetPasswordSteps.openCompanyResetPasswordPage();
 
         companyRecoveryPage.sendEmail("notregistered@email.com");
@@ -89,7 +87,7 @@ public class CompanyResetPasswordTests extends BaseTests {
     }
 
     @Test(description = "MRKTGLD-48 / Check Company Reset Password enter email without '@' symbol", groups = {"company reset password"})
-    public void checkEmailEntryWithoutSymbol() throws InterruptedException {
+    public void checkEmailEntryWithoutSymbol() {
         resetPasswordSteps.openCompanyResetPasswordPage();
 
         companyRecoveryPage.sendEmail("notregistered");

@@ -1,5 +1,6 @@
 package steps;
 
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.company.CompanySignInPage;
@@ -18,7 +19,8 @@ public class ResetPasswordSteps {
         companySignInPage = new CompanySignInPage(driver);
     }
 
-    public void openCompanyResetPasswordPage() throws InterruptedException {
+    @SneakyThrows
+    public void openCompanyResetPasswordPage() {
         homePage.clickToSignInPage();
         companySignInPage.clickToCompany();
         companySignInPage.clickToResetPassword();
